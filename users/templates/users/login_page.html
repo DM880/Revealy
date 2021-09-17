@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Revealy</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
+  <link href="{% static 'css/users/login_page.css' %}" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+  <div class="app"><h1 class="rev">Revealy</h1></div>
+<div class="login">
+    <form class="login-f" method="POST" action="{% url 'user:Login_page' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="lf"></label><input name="username" type="username" class="username" placeholder="Username"  id="username"/></div>
+      <div class="lf"><input name="password" type="password" class="password" placeholder="Password" id="password"/></div>
+      <div class="lf"><button type="submit" class="btn btn-primary btn-lg" value="Log In">Log In</button></div>
+    </form>
+  <div class="rst"><a class="reset" href="{% url 'user:password_reset' %}">Reset Password</a></div>
+  {% if error %}<li>Invalid login details</li>{% endif %}
+  <hr>
+  <form>
+  <div class="signup"><button class="btn btn-success" formaction="{% url 'user:Register' %}">Create New Account</button></div>
+  </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Create New Account</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="{% static 'css/users/register.css' %}">
+
+</head>
+<body>
+
+
+<div class="home"><a class="login" href="{% url 'user:Login_page' %}">Login</a></div>
+
+<div class="register">
+    <form class="register-f" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="rf"><input name="fname" type="text" class="name" placeholder="First Name" required/><input name="lname" type="text" class="name" placeholder="Last Name"/></div>
+      <div class="rf"><input name="username" type="username" class="username" placeholder="Username" required/></div>
+      <div class="rf"><input name="email" type="email" class="email" placeholder="Email" required/></div>
+      <div class="rf"><input name="password" type="password" class="password" placeholder="New Password" required/></div>
+      <div class="rf"><button type="submit" class="btn btn-success btn-lg" value="CreateAccount">Create Account</button></div>
+    </form>
+    </div>
+
+</body>
+</html>

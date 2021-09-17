@@ -1,0 +1,23 @@
+<!-- <!doctype html> -->
+
+<html lang="en">
+    {% load static %}
+<head>
+  <meta charset="utf-8">
+
+  <title>Home</title>
+  <link rel="stylesheet" href="{% static 'css/users/main.css' %}">
+
+</head>
+  <body>
+    <div id="waitingpage" class="bgimg">
+  <div class="topleft">
+    <a class="logout" href="{% url 'user:Logout' %}">Log Out</a>
+    <a class="profile" href="{% url 'user:Profile' username=user.username %}">Profile</a>
+  </div>
+  <div class="middle">
+    <h1 class="rainbow rainbow_text_animated">YOU ARE IN</h1>
+  </div>
+</div>
+  </body>
+</html>

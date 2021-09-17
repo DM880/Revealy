@@ -1,0 +1,14 @@
+{% extends "uploads/base_uploads.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Upload Profile Image {% endblock %}
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data" action="{% url 'user:upload_profile_img' %}">
+    {% csrf_token %}
+   {{ form|crispy }}
+<button type="submit" class="btn btn-primary btn-md">Upload</button>
+</form>
+
+{% endblock %}

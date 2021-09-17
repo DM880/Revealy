@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+{% load chats_tags %}
+
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %} Chats {% endblock %}</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="{% static 'css/chats_base.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body style="background-image: url({% static 'img/chats_base_img.gif' %}">
+<nav></nav>
+{% block content %}
+<div class="chats container-fluid">
+  <ul>
+    {% for chat in all_chats %}
+    <li>
+      <a type="button" class="c-groups" href="{% url 'chat:specific_room' room=chat.room_name %}">{{ chat.room_name }}</a>
+      <button class="c-groups-data" href=""><span class="dot"></span> <p>{{ chat.subscribers.count }} Live</p></button>
+    </li>
+{% endfor %}
+  </ul>
+</div>
+{% endblock %}
+
+</body>
+</html>

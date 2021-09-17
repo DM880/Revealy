@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Revealy</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
+  <link href="{% static 'css/users/base.css' %}" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container-top">
+  <div class="cover">
+    <a class="home" href="{% url 'user:main' %}">Home</a>
+    <button type="button" class="btn-cover btn btn-success"><a class="a-cover" href="{% url 'user:upload_cover' %}">Cover</a></button>
+
+      <img class="imgcover" src="/media/{{ user_post.cover_image }}"/></div>
+  <div class="profile">
+    <img class="profile" src="/media/{{ user_post.profile_image }}"/>
+    </div>
+   <div class="username">
+    <h1 class="username">{{ username }}</h1>
+    <button type="button" class="btn-cover btn btn-success"><a class="a-cover" href="{% url 'user:upload_profile_img' %}">Profile</a></button>
+    </div>
+</div>
+<nav class="nav" id="navbar"><ul><li><a href="">Rewards</a></li><li><a href="">Reveals</a></li><li><a href="">Groups<a/></li><li><a href="">Info<a/></li></ul></nav>
+<div class="middle">
+   <div class="chatpost">
+        <form method="POST" action="{% url 'user:Profile' username=user.username %}" enctype="multipart/form-data">
+            {% csrf_token %}
+        <input type=text class="post" name="post" placeholder="Write here..."/>
+          <button class="btn btn-primary" type="submit">POST</button>
+        </form>
+      </div>
+</div>
+
+{% block content %}
+
+{% for post in posts %}
+<div class="posted">
+  <li><p class="post-txt" name="post_id">{{ post }}</p>
+  <a type="submit" class="delete" href="{% url 'user:delete_post' post_id=post %}">Delete</a>
+  </li>
+</div>
+{% endfor %}
+
+    {% endblock %}
+
+    <script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,71 @@
+body{
+  background-color: #F1F1F1;
+}
+
+.register{
+  margin-top: 15%;
+  margin-left: 25%;
+  text-align: center;
+  position: absolute;
+  padding: 2% 2% 2% 2%;
+  background-color: #FFFFFF;
+  width: 50%;
+  border-radius: 25px;
+  line-height: 2rem;
+}
+
+input{
+  width: 100%;
+  height: 2.5rem;
+  border-color: transparent;
+  border-bottom-color: #39A2DB;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+}
+
+.rf{
+  line-height: 3rem;
+}
+
+
+.btn{
+  height: auto;
+  width: 100%;
+}
+
+input:focus{
+  border: 2px solid #39A2DB;
+  border-radius: 5px;
+  outline: none;
+  -webkit-transition : border 700ms ease-out;
+  -moz-transition : border 700ms ease-out;
+  -o-transition : border 700ms ease-out;
+  transition : border 700ms ease-out;
+}
+
+
+@media screen and (max-width: 844px){
+
+  .register{
+    margin: 20% 10px 0 10px;
+    width: 100%;
+    position: relative;
+  }
+}
+
+.login{
+  text-decoration: none;
+  font-size: 20px;
+  color: blue;
+  padding-left: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.login:hover{
+  color: red;
+}
+
+.name{
+  width:50%;
+}
