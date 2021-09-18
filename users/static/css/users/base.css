@@ -1,6 +1,8 @@
 body{
   margin:0;
   padding: 0;
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/diagmonds-light.png");
 }
 
 /* Cover */
@@ -9,15 +11,38 @@ body{
   background-size: 100%;
   height: 200px;
   border-bottom: solid red;
+  background-color: white;
+  overflow: hidden;
 }
+
+.home,.btn-cover,.btn-profile,.btn-post{
+   opacity: 80%;
+   transition: all .6s ease;
+   -webkit-transition: all .6s ease;
+}
+
+.home:hover,.btn-cover:hover,.btn-profile:hover,.btn-post:hover{
+  border-radius: 15px;
+}
+
 
 .btn-cover{
   position: absolute;
+  font-size: 15px;
+  background-color: transparent;
+  color: green;
 }
 
-.a-cover, .a-cover:hover{
+.btn-profile{
+  font-size: 15px;
+  background-color: transparent;
+  color: green;
+}
+
+.btn-cover:hover, .btn-profile:hover{
   color: white;
-  text-decoration: none;
+  background-color: green;
+  opacity: 100%;
 }
 
 
@@ -27,43 +52,61 @@ body{
 }
 
 .imgcover{
-  background-size: cover;
   width: 100%;
   height: 200px;
+  object-fit: cover;
 }
 
 .home{
   text-decoration: none;
   position: absolute;
-  padding-left: 90%;
-  font-size: 20px;
+  top:0;
+  right:0;
+  font-size: 15px;
   color: red;
+  background-color: transparent;
 }
 
 .home:hover{
-  color: green;
+  color: white;
+  background-color: red;
+  opacity: 100;
 }
 
 /* Profile */
 
-.profile {
+.profile-border{
+  background-color: white;
+  border: solid red;
   border-radius:50%;
-  width:200px;
-  height:200px;
+  width: 200px;
+  height: 200px;
   item-align: center;
-  margin: auto;
-  margin-top: -50px;
+  margin: -70px auto auto auto;
   justify-content: center;
 }
-.profile img {
-  border:solid red;
-  max-width:100%;
+
+.profile{
+  border-radius:50%;
+  width: 200px;
+  height: 200px;
 }
+
+img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
 
 .username{
   text-align: center;
-  margin-top: -20px;
+  margin-top: 20px;
 }
+
+.btn-cover{
+  justify-content: center;
+}
+
 
 /* Middle Part & Nav*/
 
@@ -121,40 +164,81 @@ li a:hover{
   margin: 0 auto;
   text-align: center;
   justify-content: center;
-  display: block;
+  position: relative;
 }
 
 .post{
-  height: 5em;
-  width: 30em;
+  background-color: white;
+  min-height: 5em;
+  height: auto;
+  min-width: 25em;
+  max-width: 95%;
   border-radius: 25px;
-  border: solid grey;
-  margin:0 auto;
+  border: solid #FF6B6B medium;
+  margin: 0 auto;
   justify-content: center;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
 }
+
+@media screen and (max-width: 514px){
+  .post{
+    min-width: auto;
+  }
+}
+
+.post:focus{
+	outline: none;
+  border: solid #FF6B6B medium;
+}
+
+ .btn-post{
+  background-color: transparent;
+  color: blue;
+  margin-bottom: 80px;
+  right: 0;
+}
+
+.btn-post:hover{
+  background-color: blue;
+  color: white;
+}
+
+/* Posted post */
 
 .posted{
   min-height: 50px;
   height: auto;
-  max-width: 30em;
-  margin-top: 50px;
+  max-width: 28em;
   justify-content: center;
   border-radius: 25px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 30px auto 10px auto;
   font-family: 'Roboto', sans-serif;
   font-size: 1.2em;
   border: solid #FF6B6B medium;
+  background-color: white;
 }
 
 .post-txt{
-  padding: 15px;
+  padding: 10px;
+}
+
+.dlt-post-div{
+  justify-content: center;
 }
 
 .delete{
-  color: red;
+  color: #FF6B6B;
+  border-radius: 25px;
+  background-color: transparent;
+  opacity: 20%;
+  font-size: 10px;
 }
 
 .delete:hover{
-  color: blue;
+  border-color: #FF6B6B;
+  color:white;
+  background-color: #FF6B6B;
+  opacity: 100;
 }

@@ -11,28 +11,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
-
+<!--Cover-->
     <div class="container-top">
   <div class="cover">
-    <a class="home" href="{% url 'user:main' %}">Home</a>
-    <button type="button" class="btn-cover btn btn-success"><a class="a-cover" href="{% url 'user:upload_cover' %}">Cover</a></button>
-
-      <img class="imgcover" src="/media/{{ user_post.cover_image }}"/></div>
-  <div class="profile">
-    <img class="profile" src="/media/{{ user_post.profile_image }}"/>
+    <a type="button" class="btn btn-danger home" href="{% url 'user:main' %}">Home</a>
+    <a type="button" class="btn-cover btn btn-success" href="{% url 'user:upload_cover' %}">Cover</a>
+<!--onerror remove empty image square-->
+      <img class="imgcover" src="/media/{{ user_post.cover_image }}"  onerror="this.style.display='none';"/></div>
+      <!--Profile img && Username-->
+  <div class="profile-border">
+    <img class="profile" src="/media/{{ user_post.profile_image }}" onerror="this.style.display='none';"/>
     </div>
    <div class="username">
     <h1 class="username">{{ username }}</h1>
-    <button type="button" class="btn-cover btn btn-success"><a class="a-cover" href="{% url 'user:upload_profile_img' %}">Profile</a></button>
+    <a type="button" class="btn btn-success btn-profile" href="{% url 'user:upload_profile_img' %}">Profile</a>
     </div>
 </div>
-<nav class="nav" id="navbar"><ul><li><a href="">Rewards</a></li><li><a href="">Reveals</a></li><li><a href="">Groups<a/></li><li><a href="">Info<a/></li></ul></nav>
+<!--Nav-->
+<nav class="nav" id="navbar"><ul><li><a href="">Rewards</a></li><li><a href="">Reveals</a></li><li><a href="">Chats<a/></li><li><a href="">Info<a/></li></ul></nav>
+<!--post-->
 <div class="middle">
    <div class="chatpost">
         <form method="POST" action="{% url 'user:Profile' username=user.username %}" enctype="multipart/form-data">
-            {% csrf_token %}
-        <input type=text class="post" name="post" placeholder="Write here..."/>
-          <button class="btn btn-primary" type="submit">POST</button>
+          {% csrf_token %}
+          <textarea type=text class="post" name="post" placeholder="Write here..."></textarea>
+          <button class="btn btn-primary btn-post" type="submit">POST</button>
         </form>
       </div>
 </div>
@@ -42,13 +45,14 @@
 {% for post in posts %}
 <div class="posted">
   <li><p class="post-txt" name="post_id">{{ post }}</p>
-  <a type="submit" class="delete" href="{% url 'user:delete_post' post_id=post %}">Delete</a>
   </li>
+  <a type="button" class="btn btn-danger delete" href="{% url 'user:delete_post' post_id=post %}">Delete</a>
 </div>
 {% endfor %}
 
     {% endblock %}
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.ns-autogrow/1.1.6/jquery.ns-autogrow.min.js'></script>
     <script src="{% static 'js/base.js' %}"></script>
 </body>
 </html>

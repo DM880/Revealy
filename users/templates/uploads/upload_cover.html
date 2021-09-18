@@ -7,7 +7,7 @@
 
 <form method="POST" enctype="multipart/form-data" action="{% url 'user:upload_cover' %}">
     {% csrf_token %}
-   {% crispy form %}
+   {{ form|crispy }}
 <button type="submit" class="btn btn-primary btn-md">Upload</button>
 </form>
 

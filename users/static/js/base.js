@@ -14,3 +14,7 @@ function myFunction() {
     navbar.classList.remove("sticky");
   }
 }
+
+// autogrow height of textarea
+
+$('.post').css('overflow', 'hidden').autogrow()
