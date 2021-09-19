@@ -245,3 +245,30 @@ li a:hover{
   background-color: #FF6B6B;
   opacity: 100;
 }
+
+
+/*Info*/
+
+.container{
+  background-color: white;
+  height: auto;
+  width: 80%;
+  margin: 10% 10%;
+  border-radius: 20px;
+  padding-bottom:10px;
+}
+
+.container h2{
+  padding-left: 20%;
+  font-family: 'Roboto', sans-serif;
+  margin: 45px;
+  color: #3DB2FF;
+}
+
+.container:first-child{
+  padding-top: 10px;
+}
+
+.inf{
+  color: #FF6B6B;
+}

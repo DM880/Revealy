@@ -2,10 +2,14 @@
 
 {% block content %}
 
-username = {{ user.get_username }}
+<div class="container">
+  <h2>Username: <span class="inf">{{ user.get_username }}</span></h2>
+  <h2>Email: <span class="inf">{{ user.email }}</span></h2>
+  <h2>First Name: <span class="inf">{{ user.first_name }}</span></h2>
+  <h2>Last Name: <span class="inf">{{ user.last_name }}</span></h2>
+  <h2>Reveals: <span class="inf"></span></h2>
+  <h2>Chats: <span class="inf"></span></h2>
+</div>
 
-email = {{ user.email }}
-
-full name = {{ user.get_full_name }}
 
 {% endblock %}

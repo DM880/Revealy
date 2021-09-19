@@ -19,7 +19,7 @@ urlpatterns = [
                 path('upload_cover/', views.upload_cover, name="upload_cover"),
                 path('upload_profile_image/', views.upload_profile_image, name="upload_profile_img"),
                 path('password_reset/', views.password_reset, name="password_reset"),
-                
-            ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+            ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

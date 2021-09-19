@@ -126,6 +126,7 @@ def upload_cover(request):
 
     if request.method == "POST":
         form = UploadCoverForm(request.POST, request.FILES or None, instance=user)
+        # user.cover_image.delete()
 
         if form.is_valid():
             user = form.save(False)
@@ -152,6 +153,7 @@ def upload_profile_image(request):
 
     if request.method == "POST":
         form = UploadProfileImgForm(request.POST, request.FILES or None, instance=user)
+        # user.profile_image.delete()
 
         if form.is_valid():
             user = form.save(False)
