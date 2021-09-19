@@ -17,7 +17,7 @@ class ProfileInfo(models.Model):
     # slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.username.title()
 
 class UserPost(models.Model):
     user = models.ForeignKey(ProfileInfo, related_name="posts", on_delete=models.CASCADE)

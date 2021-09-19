@@ -8,9 +8,9 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 
 class UploadCoverForm(forms.ModelForm):
 
-    # def __init__(self, *args, **kwargs):
-    #     super(UploadCoverForm, self).__init__(*args, **kwargs)
-    #     self.helper = FormHelper(self)
+    def __init__(self, *args, **kwargs):
+        super(UploadCoverForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
 
     class Meta:
         model = ProfileInfo
@@ -18,6 +18,14 @@ class UploadCoverForm(forms.ModelForm):
 
 
 class UploadProfileImgForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(UploadProfileImgForm, self).__init__(*args, **kwargs)
+
+        # If you pass FormHelper constructor a form instance
+        # It builds a default layout with all its fields
+        self.helper = FormHelper(self)
+
     class Meta:
         model = ProfileInfo
         fields = ['profile_image']

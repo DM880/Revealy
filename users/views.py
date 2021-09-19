@@ -85,7 +85,7 @@ def create_user_profile_info(sender, instance, created, **kwargs):
 @login_required
 def main_profile(request, username):
 
-    username =  request.user.username
+    username =  request.user.username.title()
     user_post = ProfileInfo.objects.get(user = request.user)
 
     queryset = UserPost.objects.all()
@@ -125,7 +125,7 @@ def upload_cover(request):
     user = ProfileInfo.objects.get(user = request.user)
 
     if request.method == "POST":
-        form = UploadCoverForm(request.POST, request.FILES, instance=user)
+        form = UploadCoverForm(request.POST, request.FILES or None, instance=user)
 
         if form.is_valid():
             user = form.save(False)
@@ -151,7 +151,7 @@ def upload_profile_image(request):
     user = ProfileInfo.objects.get(user = request.user)
 
     if request.method == "POST":
-        form = UploadProfileImgForm(request.POST, request.FILES, instance=user)
+        form = UploadProfileImgForm(request.POST, request.FILES or None, instance=user)
 
         if form.is_valid():
             user = form.save(False)
@@ -169,6 +169,14 @@ def upload_profile_image(request):
         form = UploadProfileImgForm(instance=user)
 
     return render(request, "uploads/upload_profile_img.html",{"form": form})
+
+
+@login_required
+def info_profile(request, username):
+
+    user_post = ProfileInfo.objects.get(user = request.user)
+
+    return render(request, "users/info.html", {'user_post': user_post})
 
 
 def password_reset(request):

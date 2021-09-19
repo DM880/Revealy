@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
 <!--Cover-->
@@ -28,8 +29,16 @@
     </div>
 </div>
 <!--Nav-->
-<nav class="nav" id="navbar"><ul><li><a href="">Rewards</a></li><li><a href="">Reveals</a></li><li><a href="">Chats<a/></li><li><a href="">Info<a/></li></ul></nav>
+<nav class="nav" id="navbar"><ul>
+<li><a href="{% url 'user:Profile' username=user.username %}">POSTS</a></li>
+<li><a href="">REVEALS</a></li>
+<li><a href="">CHATS<a/></li>
+<li><a href="{% url 'user:info_profile' username=user.username %}">INFO<a/></li>
+</ul></nav>
 <!--post-->
+
+{% block content %}
+
 <div class="middle">
    <div class="chatpost">
         <form method="POST" action="{% url 'user:Profile' username=user.username %}" enctype="multipart/form-data">
@@ -39,8 +48,6 @@
         </form>
       </div>
 </div>
-
-{% block content %}
 
 {% for post in posts %}
 <div class="posted">

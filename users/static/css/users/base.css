@@ -125,7 +125,7 @@ img{
   width: 100%;
   justify-content: center;
   text-align: center;
-  background-color: #185ADB;
+  background-color: #2C2731;
 }
 
 ul {
@@ -141,19 +141,21 @@ ul {
 }
 
 li a{
+  font-family: 'Lato', sans-serif;
   text-decoration: none;
   font-size: 20px;
-  color: white;
+  color: #FFFFFF;
 }
 
 li a:hover{
-  color: #FFD523;
+  color: #9C60C9;
 }
 
 .sticky {
   position: fixed;
   top: -50px;
   width: 100%;
+  z-index:999;
 }
 
 /* Posts */
@@ -172,7 +174,7 @@ li a:hover{
   min-height: 5em;
   height: auto;
   min-width: 25em;
-  max-width: 95%;
+  max-width: 25em;
   border-radius: 25px;
   border: solid #FF6B6B medium;
   margin: 0 auto;
@@ -185,6 +187,7 @@ li a:hover{
 @media screen and (max-width: 514px){
   .post{
     min-width: auto;
+    max-width: 95%;
   }
 }
 
