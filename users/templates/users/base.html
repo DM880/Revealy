@@ -24,7 +24,7 @@
     <img class="profile" src="/media/{{ user_post.profile_image }}" onerror="this.style.display='none';"/>
     </div>
    <div class="username">
-    <h1 class="username">{{ username }}</h1>
+    <h1 class="username">{{ user.username }}</h1>
     <a type="button" class="btn btn-success btn-profile" href="{% url 'user:upload_profile_img' %}">Profile</a>
     </div>
 </div>

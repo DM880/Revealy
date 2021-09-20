@@ -8,7 +8,7 @@
   <h2>First Name: <span class="inf">{{ user.first_name }}</span></h2>
   <h2>Last Name: <span class="inf">{{ user.last_name }}</span></h2>
   <h2>Reveals: <span class="inf"></span></h2>
-  <h2>Chats: <span class="inf"></span></h2>
+  <h2>Chats: {% for room in rooms %}<span class="inf">{{ room }} </span>{% endfor %}</h2>
 </div>
 
 

@@ -21,6 +21,7 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from chats.models import *
 
 
 # Create your views here.
@@ -88,15 +89,13 @@ def main_profile(request, username):
     username =  request.user.username.title()
     user_post = ProfileInfo.objects.get(user = request.user)
 
-    queryset = UserPost.objects.all()
+    queryset = UserPost.objects.all().filter(user = user_post)
     # .filter(user = user_post).order_by('-publish')
 
     posts = []
 
     for query in queryset:
-        if user_post == query.user:
-            posts.append(query.posts)
-
+        posts.append(query.posts)
 
     if request.method == 'POST':
 
@@ -126,7 +125,7 @@ def upload_cover(request):
 
     if request.method == "POST":
         form = UploadCoverForm(request.POST, request.FILES or None, instance=user)
-        # user.cover_image.delete()
+        user.cover_image.delete()#delete previous image in upload if nothing upload it delete anyway,problem to fix
 
         if form.is_valid():
             user = form.save(False)
@@ -153,7 +152,7 @@ def upload_profile_image(request):
 
     if request.method == "POST":
         form = UploadProfileImgForm(request.POST, request.FILES or None, instance=user)
-        # user.profile_image.delete()
+        user.profile_image.delete() #delete previous image in upload if nothing upload it delete anyway,problem to fix
 
         if form.is_valid():
             user = form.save(False)
@@ -176,9 +175,16 @@ def upload_profile_image(request):
 @login_required
 def info_profile(request, username):
 
+    queryset = Room.objects.all().filter(subscribers = request.user)
+
+    rooms = []
+
+    for query in queryset:
+        rooms.append(query.room_name)
+
     user_post = ProfileInfo.objects.get(user = request.user)
 
-    return render(request, "users/info.html", {'user_post': user_post})
+    return render(request, "users/info.html", {'user_post': user_post, 'rooms':rooms})
 
 
 def password_reset(request):
