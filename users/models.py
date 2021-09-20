@@ -12,8 +12,7 @@ class ProfileInfo(models.Model):
     profile_image = models.ImageField(null=True, blank=True,upload_to='avatar/')
     # info = models.CharField(max_length=50, blank=True)
     # groups = models.OneToManyField()
-    # rewards = model.CharField()
-    # reveals = model.OneToManyField()
+    # rewards = models.CharField()
     # slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
@@ -32,3 +31,5 @@ class UserPost(models.Model):
 
 #  unique=True, blank=True, default=uuid.uuid4
 
+# class Reveal(models.Model):
+#     reveal_user = models.ManyToManyField(ProfileInfo)

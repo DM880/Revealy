@@ -9,8 +9,10 @@ class PostsInLine(admin.StackedInline):
 
 
 class ProfileAdmin(admin.ModelAdmin):
+
     inlines = [
             PostsInLine,
         ]
 
 admin.site.register(ProfileInfo , ProfileAdmin)
+# admin.site.register(Reveal)

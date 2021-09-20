@@ -16,7 +16,10 @@ class Room(models.Model):
     specific_room_chat = models.ForeignKey(Chat, on_delete=models.CASCADE, default="")
 
     def __str__(self):
-        return "{room_chat}/{room_name}".format(room_chat=self.specific_room_chat,room_name=self.room_name)
+        return self.room_name
+
+    # def __str__(self):
+    #     return "{room_chat}/{room_name}".format(room_chat=self.specific_room_chat,room_name=self.room_name)
 
 class SubMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

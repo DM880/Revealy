@@ -10,7 +10,6 @@ app_name = "user"
 
 urlpatterns = [
                 path('', views.login_page, name='Login_page'),
-                path('main/', views.main, name='main'),
                 path('register/',views.register, name='Register'),
                 path('logout/', views.user_logout, name='Logout'),
                 path('profile/<username>/', views.main_profile, name="Profile"),

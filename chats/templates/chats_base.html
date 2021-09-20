@@ -13,14 +13,26 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body style="background-image: url({% static 'img/chats_base_img.gif' %}">
-<nav></nav>
+
+      <div class="header">
+  <a id="home" class="logo men-a">{{ request.user.username }}</a>
+  <input class="menu-btn" type="checkbox" id="menu-btn" />
+  <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+  <ul class="menu">
+    <li><a class="men-a" href="{% url 'user:Profile' username=user.username %}">Profile</a></li>
+    <li><a class="men-a" href="{% url 'user:Logout' %}">Logout</a></li>
+  </ul>
+    </div>
+
+
 {% block content %}
 <div class="chats container-fluid">
+  <div class="chatt"></div>
   <ul>
     {% for chat in all_chats %}
     <li>
       <a type="button" class="c-groups" href="{% url 'chat:specific_room' room=chat.room_name %}">{{ chat.room_name }}</a>
-      <button class="c-groups-data" href=""><span class="dot"></span> <p>{{ chat.subscribers.count }} Live</p></button>
+      <button class="c-groups-data" href=""><span class="dot"></span> <p>{{ chat.subscribers.count }} {% if chat.subscribers.count > 1 %}Subs{% else %}Sub{% endif %}</p></button>
     </li>
 {% endfor %}
   </ul>

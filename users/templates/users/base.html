@@ -12,10 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
+
+
 <!--Cover-->
     <div class="container-top">
   <div class="cover">
-    <a type="button" class="btn btn-danger home" href="{% url 'user:main' %}">Home</a>
+    <a type="button" class="btn btn-danger home" href="{% url 'chat:base_chats' %}">Home</a>
     <a type="button" class="btn-cover btn btn-success" href="{% url 'user:upload_cover' %}">Cover</a>
 <!--onerror remove empty image square-->
       <img class="imgcover" src="/media/{{ user_post.cover_image }}"  onerror="this.style.display='none';"/></div>

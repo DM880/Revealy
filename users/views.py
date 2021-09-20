@@ -22,6 +22,9 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from chats.models import *
+from chats.templates import *
+from chats.views import *
+from chats.urls import *
 
 
 # Create your views here.
@@ -29,7 +32,7 @@ from chats.models import *
 def login_page(request):
 
     if request.user.is_authenticated:
-        return redirect('user:main')
+        return redirect('chat:base_chats')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -38,15 +41,11 @@ def login_page(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return redirect(reverse('user:main'))
+                return redirect(reverse('chat:base_chats'))
         else:
             return render(request, 'users/login_page.html', {'error': True})
     else:
         return render(request, 'users/login_page.html')
-
-@login_required
-def main(request):
-    return render(request,'users/main.html')
 
 @login_required
 def user_logout(request):
@@ -57,7 +56,7 @@ def user_logout(request):
 @csrf_protect
 def register(request):
     if request.user.is_authenticated:
-        return redirect('user:main')
+        return redirect('chat:base_chats')
 
     elif request.method == "POST":
 
