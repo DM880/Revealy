@@ -221,6 +221,9 @@ li a:hover{
   font-size: 1.2em;
   border: solid #FF6B6B medium;
   background-color: white;
+  overflow: auto;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .post-txt{

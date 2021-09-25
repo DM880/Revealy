@@ -186,6 +186,15 @@ def info_profile(request, username):
     return render(request, "users/info.html", {'user_post': user_post, 'rooms':rooms})
 
 
+def reveals(request,username):
+
+    all_users = User.objects.all()
+
+    user_post = ProfileInfo.objects.get(user = request.user)
+
+    return render(request, "users/reveals.html", {"user_post":user_post, "all_users":all_users})
+
+
 def password_reset(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)

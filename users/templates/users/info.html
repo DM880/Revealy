@@ -7,8 +7,8 @@
   <h2>Email: <span class="inf">{{ user.email }}</span></h2>
   <h2>First Name: <span class="inf">{{ user.first_name }}</span></h2>
   <h2>Last Name: <span class="inf">{{ user.last_name }}</span></h2>
-  <h2>Reveals: <span class="inf"></span></h2>
-  <h2>Chats: {% for room in rooms %}<span class="inf">{{ room }} </span>{% endfor %}</h2>
+  <h2>Date Joined: <span class="inf">{{ user.date_joined }}</span></h2>
+  <h2>Chats Subs: {% for room in rooms %}<span class="inf">{% if forloop.last %}{{ room }} {% else %} {{ room }} / {% endif %} </span>{% endfor %}</h2>
 </div>
 
 

@@ -14,6 +14,7 @@ urlpatterns = [
                 path('logout/', views.user_logout, name='Logout'),
                 path('profile/<username>/', views.main_profile, name="Profile"),
                 path('profile/<username>/info/', views.info_profile, name="info_profile"),
+                path('profile/<username>/reveals/', views.reveals, name="reveals"),
                 path('delete_post/<post_id>/', views.delete_post, name="delete_post"),
                 path('upload_cover/', views.upload_cover, name="upload_cover"),
                 path('upload_profile_image/', views.upload_profile_image, name="upload_profile_img"),

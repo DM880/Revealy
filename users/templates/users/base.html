@@ -17,7 +17,7 @@
 <!--Cover-->
     <div class="container-top">
   <div class="cover">
-    <a type="button" class="btn btn-danger home" href="{% url 'chat:base_chats' %}">Home</a>
+    <a type="button" class="btn btn-danger home" href="{% url 'chat:base_chats' %}">Chat</a>
     <a type="button" class="btn-cover btn btn-success" href="{% url 'user:upload_cover' %}">Cover</a>
 <!--onerror remove empty image square-->
       <img class="imgcover" src="/media/{{ user_post.cover_image }}"  onerror="this.style.display='none';"/></div>
@@ -33,8 +33,7 @@
 <!--Nav-->
 <nav class="nav" id="navbar"><ul>
 <li><a href="{% url 'user:Profile' username=user.username %}">POSTS</a></li>
-<li><a href="">REVEALS</a></li>
-<li><a href="">CHATS<a/></li>
+<li><a href="{% url 'user:reveals' username=user.username %}">REVEALS</a></li>
 <li><a href="{% url 'user:info_profile' username=user.username %}">INFO<a/></li>
 </ul></nav>
 <!--post-->
