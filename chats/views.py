@@ -15,7 +15,6 @@ from datetime import datetime
 
 # Create your views here.
 
-
 @login_required
 def base_chats(request):
 

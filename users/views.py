@@ -140,10 +140,9 @@ def delete_user(request, username):
     return render(request, "users/delete_user.html", {"username":username, 'form': form})
 
 
-def delete(request):
-    return render(request, "users/delete_user.html")
-
 # POST & IMAGES UPLOAD
+
+# django cleanup for deletion of previous image if new uploaded
 
 @login_required
 def upload_cover(request):
@@ -151,7 +150,6 @@ def upload_cover(request):
 
     if request.method == "POST":
         form = UploadCoverForm(request.POST, request.FILES, instance=user)
-        user.cover_image.delete()#delete previous image in upload if nothing upload it delete anyway,problem to fix
 
         if form.is_valid():
             user = form.save(False)
@@ -178,7 +176,6 @@ def upload_profile_image(request):
 
     if request.method == "POST":
         form = UploadProfileImgForm(request.POST, request.FILES or None, instance=user)
-        user.profile_image.delete() #delete previous image in upload if nothing upload it delete anyway,problem to fix
 
         if form.is_valid():
             user = form.save(False)
@@ -189,7 +186,7 @@ def upload_profile_image(request):
                 image_data = BytesIO()
                 image.save(fp=image_data, format=image.format)
                 image_file = ImageFile(image_data)
-                user.profile_image.save('{}.profile_image.{}'.format(user,image.format), image_file) #img.name
+                user.profile_image.save('{}.profile_image.{}'.format(user,image.format), image_file)#img.name
             user.save()
             return redirect("user:Profile", request.user.username)
     else:
@@ -206,7 +203,6 @@ def main_profile(request, username):
     user_post = ProfileInfo.objects.get(user = request.user)
 
     queryset = UserPost.objects.all().filter(user = user_post)
-    # .filter(user = user_post).order_by('-publish')
 
     posts = []
 
