@@ -116,33 +116,28 @@ def password_reset(request):
 @login_required
 def delete_user(request, username):
 
-
     if request.method == "POST":
 
-        # form = DeleteUserForm(request.POST)
+        form = DeleteUserForm(request.POST)
 
-        # if form.is_valid():
+        if form.is_valid():
 
-        #     yes = delete_user_form.cleaned_data['yes']
-        #     no = delete_user_form.cleaned_data['no']
+            choice = form.cleaned_data.get('response')
 
-            # if yes:
-        yes = request.POST['yes']
-        no = request.POST['no']
+            if choice == "yes":
 
-        if yes:
+                user = User.objects.get(username = username)
+                user.delete()
 
-            user = User.object.get(username = username)
-            user.delete()
+                return redirect("user:Login_page")
 
-            return redirect("user:Login_page")
+            else:
 
-        else:
-            return redirect("user:main_profile")
+                return redirect("user:Profile", username)
 
-    # form = DeleteUserForm()
+    form = DeleteUserForm()
 
-    return render(request, "users/delete_user.html", {"username":username})
+    return render(request, "users/delete_user.html", {"username":username, 'form': form})
 
 
 def delete(request):

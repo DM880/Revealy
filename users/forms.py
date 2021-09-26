@@ -35,5 +35,16 @@ class UploadProfileImgForm(forms.ModelForm):
         fields = ['profile_image']
 
 
-# class DeleteUserForm(forms.Form):
-#     choices = forms.ChoiceField(required = True, widget=forms.RadioSelect(attrs={'name' : 'choice'}), initial=1)
+CHOICE = [
+          ('yes', 'Yes'),
+          ('no', 'No')
+          ]
+
+
+class DeleteUserForm(forms.Form):
+    choices = forms.ChoiceField(widget=forms.RadioSelect(attrs={'class': "radio-select"}),choices=CHOICE,initial='no',required=True)
+
+
+    # def __init__(self, *args, **kwargs):
+    #     super(DeleteUserForm, self).__init__(*args, **kwargs)
+    #     self.fields['choices'].widget.attrs.update({'class': 'input'})

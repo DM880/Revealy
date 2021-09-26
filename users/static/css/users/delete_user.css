@@ -10,6 +10,7 @@ h1{
 input{
   height: 20px;
   width: 20px;
+  text-align: center;
 }
 
 label{
@@ -25,4 +26,10 @@ input[type="radio"]:checked+label {
 .btn{
   font-size: 20px;
   padding: 10px;
+}
+
+.radio-select{
+  list-style: none;
+  margin-left: -20px;
+
 }

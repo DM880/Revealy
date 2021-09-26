@@ -27,3 +27,39 @@ def base_chats(request):
 def specific_room(request, room):
 
     return render(request, "specific_room.html", {'room':room})
+
+@login_required
+def sub_or_unsub(request, room):
+
+    if request.method == "POST":
+
+        user_chats = Room.objects.all().filter(subscribers = request.user)
+        chats = Room.objects.all()
+
+        if user_chats.count() > 0:
+
+            for user_chat in user_chats:
+
+                if user_chat.room_name == room:
+                    user_chat.subscribers.remove(request.user)
+                    user_chat.save()
+
+                    return redirect("chat:base_chats")
+
+                else:
+                    for chat in chats:
+                        if chat.room_name == room:
+                            chat.subscribers.add(request.user)
+                            chat.save()
+
+                            return redirect("chat:base_chats")
+        else:
+            for chat in chats:
+                if chat.room_name == room:
+                    chat.subscribers.add(request.user)
+                    chat.save()
+
+                    return redirect("chat:base_chats")
+
+
+
