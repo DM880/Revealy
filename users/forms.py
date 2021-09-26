@@ -4,17 +4,21 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+from weasyprint import HTML
 
 
 class UploadCoverForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        super(UploadCoverForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-
     class Meta:
         model = ProfileInfo
         fields = ['cover_image']
+
+    def __init__(self, *args, **kwargs):
+        super(UploadCoverForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        # self.helper.layout = Layout(
+        #     'cover_image'
+        # )
 
 
 class UploadProfileImgForm(forms.ModelForm):
@@ -30,3 +34,6 @@ class UploadProfileImgForm(forms.ModelForm):
         model = ProfileInfo
         fields = ['profile_image']
 
+
+# class DeleteUserForm(forms.Form):
+#     choices = forms.ChoiceField(required = True, widget=forms.RadioSelect(attrs={'name' : 'choice'}), initial=1)

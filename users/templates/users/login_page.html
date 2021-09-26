@@ -18,11 +18,11 @@
 <div class="login">
     <form class="login-f" method="POST" action="{% url 'user:Login_page' %}" enctype="multipart/form-data">
       {% csrf_token %}
-      <div class="lf"></label><input name="username" type="username" class="username" placeholder="Username"  id="username"/></div>
+      <div class="lf"></label><input name="username" type="username" class="username" placeholder="Username" id="username"/></div>
       <div class="lf"><input name="password" type="password" class="password" placeholder="Password" id="password"/></div>
       <div class="lf"><button type="submit" class="btn btn-primary btn-lg" value="Log In">Log In</button></div>
     </form>
-  <div class="rst"><a class="reset" href="{% url 'user:password_reset' %}">Reset Password</a></div>
+  <div class="rst"><a class="reset" href="{% url 'user:password_reset' %}">Forgot Password?</a></div>
   {% if error %}<li>Invalid login details</li>{% endif %}
   <hr>
   <form>

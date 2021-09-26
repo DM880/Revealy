@@ -49,6 +49,10 @@ input{
   font-size: 14px;
 }
 
+.reset:hover{
+  text-decoration: underline;
+}
+
 .btn{
   height: auto;
   width: 100%;

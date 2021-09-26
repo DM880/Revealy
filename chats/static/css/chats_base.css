@@ -236,3 +236,21 @@ p{
 		75%		{ background-color: #7D0000;}
 		100%	{ background-color: #FF0000;}
 	}
+
+
+/*Sub button*/
+
+.add{
+  margin-left: 20px;
+  border-radius: 50%;
+  background-color: #5F5EF8;
+  border-color: #5F5EF8;
+}
+
+.add:hover{
+  background-color: #EEEEEE;
+  color: #5F5EF8;
+  border-color: #5F5EF8;
+  transition: all .6s ease;
+  -webkit-transition: all .6s ease;
+}

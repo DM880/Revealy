@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Account</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="{% static 'css/users/delete_user.css' %}">
+
+</head>
+<body>
+<div>
+
+<h1>Do you really want to delete your account?</h1>
+<form method="post" enctype="multipart/form-data" action="{% url 'user:delete_user' username=user.username %}">
+    {% csrf_token %}
+<div class="yes">
+<input type="radio" id="yes" name="choice"/><label for="yes">
+Yes</label>
+  </div>
+  <div class="yes">
+<input type="radio" id="no" name="choice"/><label for="yes">
+No</label>
+</div>
+</br>
+<button class="btn btn-danger" type='submit'>Submit</button>
+</div>
+</form>
+
+</body>
+</html>

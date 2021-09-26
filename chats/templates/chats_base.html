@@ -33,6 +33,7 @@
     <li>
       <a type="button" class="c-groups" href="{% url 'chat:specific_room' room=chat.room_name %}">{{ chat.room_name }}</a>
       <button class="c-groups-data" href=""><span class="dot"></span> <p>{{ chat.subscribers.count }} {% if chat.subscribers.count > 1 %}Subs{% else %}Sub{% endif %}</p></button>
+      <button class="btn btn-success add" type="submit" {% if request.user in chat.subscribers.all %} title="Unsubscribe" {% else %} title="Subscribe" {% endif %} href="">{% if request.user in chat.subscribers.all %} × {% else %} + {% endif %}</button>
     </li>
 {% endfor %}
   </ul>

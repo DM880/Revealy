@@ -30,7 +30,6 @@ from chats.urls import *
 # Create your views here.
 
 def login_page(request):
-
     if request.user.is_authenticated:
         return redirect('chat:base_chats')
 
@@ -46,6 +45,7 @@ def login_page(request):
             return render(request, 'users/login_page.html', {'error': True})
     else:
         return render(request, 'users/login_page.html')
+
 
 @login_required
 def user_logout(request):
@@ -81,49 +81,81 @@ def create_user_profile_info(sender, instance, created, **kwargs):
         ProfileInfo.objects.create(user=instance)
 
 
-#Create Post
+def password_reset(request):
+	if request.method == "POST":
+		password_reset_form = PasswordResetForm(request.POST)
+		if password_reset_form.is_valid():
+			data = password_reset_form.cleaned_data['email']
+			associated_users = User.objects.filter(Q(email=data))
+			if associated_users.exists():
+				for user in associated_users:
+					subject = "Password Reset Requested"
+					email_template_name = "password_reset/password_reset_email.txt"
+					c = {
+					"email":user.email,
+					'domain':request.META['HTTP_HOST'],
+					'site_name': 'Revealy',
+					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+					'token': default_token_generator.make_token(user),
+					'protocol': 'http',
+					}
+					email = render_to_string(email_template_name, c)
+					try:
+						send_mail(subject, email, 'Revealy Customers Support' , [user.email], fail_silently=False)
+					except BadHeaderError:
+
+						return HttpResponse('Invalid header found.')
+
+					messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
+					return redirect ("user:Login_page")
+			messages.error(request, 'An invalid email has been entered.')
+	password_reset_form = PasswordResetForm()
+	return render(request, "password_reset/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
 @login_required
-def main_profile(request, username):
-
-    username =  request.user.username.title()
-    user_post = ProfileInfo.objects.get(user = request.user)
-
-    queryset = UserPost.objects.all().filter(user = user_post)
-    # .filter(user = user_post).order_by('-publish')
-
-    posts = []
-
-    for query in queryset:
-        posts.append(query.posts)
-
-    if request.method == 'POST':
-
-        post = request.POST.get('post')
-        new_post = UserPost.objects.create(user=user_post,posts=post)
-
-        return redirect('user:Profile',username)
-
-    return render(request, 'users/base.html', {"username" : username, "posts" : posts, "user_post": user_post})
+def delete_user(request, username):
 
 
-@login_required
-def delete_post(request, post_id):
+    if request.method == "POST":
 
-    username =  request.user.username
+        # form = DeleteUserForm(request.POST)
 
-    post = UserPost.objects.all().filter(posts = post_id)
+        # if form.is_valid():
 
-    post.delete()
+        #     yes = delete_user_form.cleaned_data['yes']
+        #     no = delete_user_form.cleaned_data['no']
 
-    return redirect("user:Profile", username)
+            # if yes:
+        yes = request.POST['yes']
+        no = request.POST['no']
 
+        if yes:
+
+            user = User.object.get(username = username)
+            user.delete()
+
+            return redirect("user:Login_page")
+
+        else:
+            return redirect("user:main_profile")
+
+    # form = DeleteUserForm()
+
+    return render(request, "users/delete_user.html", {"username":username})
+
+
+def delete(request):
+    return render(request, "users/delete_user.html")
+
+# POST & IMAGES UPLOAD
 
 @login_required
 def upload_cover(request):
     user = ProfileInfo.objects.get(user = request.user)
 
     if request.method == "POST":
-        form = UploadCoverForm(request.POST, request.FILES or None, instance=user)
+        form = UploadCoverForm(request.POST, request.FILES, instance=user)
         user.cover_image.delete()#delete previous image in upload if nothing upload it delete anyway,problem to fix
 
         if form.is_valid():
@@ -171,6 +203,46 @@ def upload_profile_image(request):
     return render(request, "uploads/upload_profile_img.html",{"form": form})
 
 
+#Create Post
+@login_required
+def main_profile(request, username):
+
+    username =  request.user.username.title()
+    user_post = ProfileInfo.objects.get(user = request.user)
+
+    queryset = UserPost.objects.all().filter(user = user_post)
+    # .filter(user = user_post).order_by('-publish')
+
+    posts = []
+
+    for query in queryset:
+        posts.append(query.posts)
+
+    if request.method == 'POST':
+
+        post = request.POST.get('post')
+        new_post = UserPost.objects.create(user=user_post,posts=post)
+
+        return redirect('user:Profile',username)
+
+    return render(request, 'users/base.html', {"username" : username, "posts" : posts, "user_post": user_post})
+
+
+@login_required
+def delete_post(request, post_id):
+
+    username =  request.user.username
+
+    post = UserPost.objects.all().filter(posts = post_id)
+
+    post.delete()
+
+    return redirect("user:Profile", username)
+
+
+
+# Main Profile sections
+
 @login_required
 def info_profile(request, username):
 
@@ -186,6 +258,7 @@ def info_profile(request, username):
     return render(request, "users/info.html", {'user_post': user_post, 'rooms':rooms})
 
 
+@login_required
 def reveals(request,username):
 
     all_users = User.objects.all()
@@ -193,36 +266,3 @@ def reveals(request,username):
     user_post = ProfileInfo.objects.get(user = request.user)
 
     return render(request, "users/reveals.html", {"user_post":user_post, "all_users":all_users})
-
-
-def password_reset(request):
-	if request.method == "POST":
-		password_reset_form = PasswordResetForm(request.POST)
-		if password_reset_form.is_valid():
-			data = password_reset_form.cleaned_data['email']
-			associated_users = User.objects.filter(Q(email=data))
-			if associated_users.exists():
-				for user in associated_users:
-					subject = "Password Reset Requested"
-					email_template_name = "password_reset/password_reset_email.txt"
-					c = {
-					"email":user.email,
-					'domain':request.META['HTTP_HOST'],
-					'site_name': 'Revealy',
-					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
-					'token': default_token_generator.make_token(user),
-					'protocol': 'http',
-					}
-					email = render_to_string(email_template_name, c)
-					try:
-						send_mail(subject, email, 'Revealy Customers Support' , [user.email], fail_silently=False)
-					except BadHeaderError:
-
-						return HttpResponse('Invalid header found.')
-
-					messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
-					return redirect ("user:Login_page")
-			messages.error(request, 'An invalid email has been entered.')
-	password_reset_form = PasswordResetForm()
-	return render(request, "password_reset/password_reset.html", context={"password_reset_form":password_reset_form})
-
