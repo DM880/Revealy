@@ -19,6 +19,7 @@
   <input class="menu-btn" type="checkbox" id="menu-btn" />
   <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
   <ul class="menu">
+    <li><a class="men-a" href="{% url 'news:news_feed' %}">News</a></li>
     <li><a class="men-a" href="{% url 'user:Profile' username=user.username %}">Profile</a></li>
     <li><a class="men-a" href="{% url 'user:Logout' %}">Logout</a></li>
   </ul>
@@ -32,7 +33,7 @@
     {% for chat in all_chats %}
     <form action="{% url 'chat:sub_or_unsub' room=chat.room_name %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-    <li>
+    <li class="li-p">
       <a type="button" class="c-groups" href="{% url 'chat:specific_room' room=chat.room_name %}">{{ chat.room_name }}</a>
       <button class="c-groups-data" href=""><span class="dot"></span> <p>{{ chat.subscribers.count }} {% if chat.subscribers.count > 1 %}Subs{% else %}Sub{% endif %}</p></button>
       <button class="btn add" type="submit" name="subs" {% if request.user in chat.subscribers.all %} title="Unsubscribe" {% else %} title="Subscribe" {% endif %}>{% if request.user in chat.subscribers.all %} × {% else %} + {% endif %}</button>

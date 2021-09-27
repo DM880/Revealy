@@ -13,11 +13,20 @@
 </head>
 <body>
 
+          <div class="header">
+          <a id="home" class="logo men-a">{{ request.user.username }}</a>
+          <input class="menu-btn" type="checkbox" id="menu-btn" />
+          <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+          <ul class="menu">
+            <li><a class="men-a" href="{% url 'chat:base_chats' %}">Chat</a></li>
+            <li><a class="men-a" href="{% url 'news:news_feed' %}">News</a></li>
+            <li><a class="men-a" href="{% url 'user:Logout' %}">Logout</a></li>
+          </ul>
+            </div>
 
 <!--Cover-->
     <div class="container-top">
   <div class="cover">
-    <a type="button" class="btn btn-danger home" href="{% url 'chat:base_chats' %}">Chat</a>
     <a type="button" class="btn-cover btn btn-success" href="{% url 'user:upload_cover' %}">Cover</a>
 <!--onerror remove empty image square-->
       <img class="imgcover" src="/media/{{ user_post.cover_image }}"  onerror="this.style.display='none';"/></div>
@@ -31,11 +40,11 @@
     </div>
 </div>
 <!--Nav-->
-<nav class="nav" id="navbar"><ul>
-<li><a href="{% url 'user:Profile' username=user.username %}">POSTS</a></li>
-<li><a href="{% url 'user:reveals' username=user.username %}">REVEALS</a></li>
-<li><a href="{% url 'user:info_profile' username=user.username %}">INFO<a/></li>
-<li><a href="{% url 'user:delete_user' username=user.username %}">DELETE<a/></li>
+<nav class="nav" id="navbar"><ul class="ul-pro">
+<li class="nav-pro"><a href="{% url 'user:Profile' username=user.username %}">POSTS</a></li>
+<li class="nav-pro"><a href="{% url 'user:reveals' username=user.username %}">REVEALS</a></li>
+<li class="nav-pro"><a href="{% url 'user:info_profile' username=user.username %}">INFO<a/></li>
+<li class="nav-pro"><a href="{% url 'user:delete_user' username=user.username %}">DELETE<a/></li>
 </ul></nav>
 <!--post-->
 
@@ -55,7 +64,7 @@
 
 {% for post in posts %}
 <div class="posted">
-  <li><p class="post-txt" name="post_id">{{ post }}</p>
+  <li class="nav-pro"><p class="post-txt" name="post_id">{{ post }}</p>
   </li>
   <a type="button" class="btn btn-danger delete" href="{% url 'user:delete_post' post_id=post %}">Delete</a>
 </div>

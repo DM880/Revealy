@@ -1,16 +1,45 @@
-html {
-  height: 100%;
-}
-body {
-  min-height: 100%;
-  min-width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
+h5{
+  float: left;
+  margin-top: 50px;
+  margin-left: 20%;
+  margin-right: 10px;
 }
 
+
+.posted{
+  min-height: 50px;
+  height: auto;
+  max-width: 28em;
+  justify-content: center;
+  border-radius: 25px;
+  margin: 30px auto 10px auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  border: solid #FF6B6B medium;
+  background-color: white;
+  overflow: auto;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.post-txt{
+  padding: 10px;
+}
+
+.dlt-post-div{
+  justify-content: center;
+}
+
+.li-p{
+  width: 100%;
+  display: inline;
+}
+
+.news{
+  padding-top: 100px;
+}
 
 /* nav */
-
 .header {
   margin: 0;
   background-color: transparent;
@@ -166,94 +195,3 @@ body {
 }
 
 /****/
-
-.chatt:first-child{
-  padding-top: 30px;
-}
-
-
-ul{
-  padding-top: 20px;
-}
-
-ul .li-p{
-  list-style-type: none;
-}
-
-.li-p{
-  padding: 1em;
-}
-
-.c-groups{
-  text-decoration: none;
-  background-color: #5F5EF8;
-  padding: 15px;
-  border-radius: 10px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: #EEEEEE;
-  border-color: #222326;
-}
-
-.c-groups:hover{
-  color: #5F5EF8;
-  background-color: #EEEEEE;
-  transition: all .6s ease;
-  -webkit-transition: all .6s ease;
-}
-
-.c-groups-data{
-  padding: 5px;
-  border-radius: 10px;
-  margin-left: 20px;
-  color: #EDE9F2;
-  background-color: #222326;
-  border-color: #5F5EF8;
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: bold;
-}
-
-
-p{
-  display: inline;
-  margin-right: 5px;
-  font-size: 0.8em;
-}
-
-.dot {
-  text-align: center;
-  margin: 0 0 0 5px;
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  display: inline-block;
-  animation: blinkingBackground 4s infinite;
-}
-
-@-webkit-keyframes blinkingBackground{
-		0%		{ background-color: #FF0000;}
-		25%		{ background-color: #7D0000;}
-		50%		{ background-color: #FF0000;}
-		75%		{ background-color: #7D0000;}
-		100%	{ background-color: #FF0000;}
-	}
-
-
-/*Sub button*/
-
-.add{
-  margin-left: 20px;
-  border-radius: 50%;
-  background-color: #5F5EF8;
-  border-color: #5F5EF8;
-  color: #EEEEEE;
-}
-
-.add:hover{
-  background-color: #EEEEEE;
-  color: #5F5EF8;
-  border-color: #5F5EF8;
-  transition: all .6s ease;
-  -webkit-transition: all .6s ease;
-}
