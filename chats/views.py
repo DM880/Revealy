@@ -45,20 +45,17 @@ def sub_or_unsub(request, room):
 
                     return redirect("chat:base_chats")
 
-                else:
-                    for chat in chats:
-                        if chat.room_name == room:
-                            chat.subscribers.add(request.user)
-                            chat.save()
 
-                            return redirect("chat:base_chats")
-        else:
-            for chat in chats:
-                if chat.room_name == room:
-                    chat.subscribers.add(request.user)
-                    chat.save()
+        for chat in chats:
+            if chat.room_name == room:
+                chat.subscribers.add(request.user)
+                chat.save()
 
-                    return redirect("chat:base_chats")
+                return redirect("chat:base_chats")
 
 
+# def index(request):
+#     return render(request, 'index.html')
 
+# def room(request, room_name):
+#     return render(request, 'room.html', {'room_name': room_name})

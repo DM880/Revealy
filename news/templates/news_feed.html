@@ -7,6 +7,9 @@
 
          <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
           <link href="{% static 'css/news_feed.css' %}" rel="stylesheet" />
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
 
@@ -23,9 +26,10 @@
 
 {% for post in posts %}
 
-<div class="news"><h5>{{ post.user }}/{{ post.publish }}</h5><div class="posted">
-  <li class="li-p"><p class="post-txt" name="post_id">{{ post.posts }}</p>
-  </li>
+<div class="news"><div class="user-div"><h5><img src="/media/{{ post.user.profile_image }}">{{ post.user }}</h5></div><div class="posted">
+  <p class="post-txt" name="post_id">{{ post.posts }}</p>
+  </div><div class="date-pub">
+  <p class="date">{{ post.publish }}</p>
   </div>
   </div>
   <hr>

@@ -1,8 +1,38 @@
+.news{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.user-div{
+  width: 100%;
+}
+
 h5{
-  float: left;
-  margin-top: 50px;
-  margin-left: 20%;
-  margin-right: 10px;
+  padding-left: 30%;
+  font-family:'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+img{
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.date-pub{
+  width: 100%;
+}
+
+.date{
+  position: static;
+  padding-right: 20%;
+  text-align: right;
+  font-family:'Roboto', sans-serif;
+  opacity: 50%;
+
 }
 
 
@@ -26,23 +56,20 @@ h5{
   padding: 10px;
 }
 
-.dlt-post-div{
-  justify-content: center;
-}
-
-.li-p{
-  width: 100%;
-  display: inline;
-}
-
 .news{
   padding-top: 100px;
 }
 
+hr{
+  margin: 0 10% 0 10%;
+}
+
+
+
 /* nav */
 .header {
   margin: 0;
-  background-color: transparent;
+  background-color: white;
   box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
   position: fixed;
   width: 100%;

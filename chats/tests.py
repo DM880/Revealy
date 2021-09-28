@@ -22,7 +22,7 @@ class ChatTests(ChannelsLiveServerTestCase):
         cls.driver.quit()
         super().tearDownClass()
 
-    def test_when_chast_message_posted_then_seen_by_everyone_in_same_room(self):
+    def test_when_chat_message_posted_then_seen_by_everyone_in_same_room(self):
         try:
             self._enter_chat_room('room_1')
 
@@ -32,11 +32,11 @@ class ChatTests(ChannelsLiveServerTestCase):
             self._switch_to_window(0)
             self._post_message('hello')
             WebDriverWait(self.driver, 2).until(lambda _:
-                'hello' in self._chats_log_value,
+                'hello' in self._chat_log_value,
                 'Message was not received by window 1 from window 1')
             self._switch_to_window(1)
             WebDriverWait(self.driver, 2).until(lambda _:
-                'hello' in self._chats_log_value,
+                'hello' in self._chat_log_value,
                 'Message was not received by window 2 from window 1')
         finally:
             self._close_all_new_windows()
@@ -46,18 +46,18 @@ class ChatTests(ChannelsLiveServerTestCase):
             self._enter_chat_room('room_1')
 
             self._open_new_window()
-            self._enter_chats_room('room_2')
+            self._enter_chat_room('room_2')
 
             self._switch_to_window(0)
             self._post_message('hello')
             WebDriverWait(self.driver, 2).until(lambda _:
-                'hello' in self._chats_log_value,
+                'hello' in self._chat_log_value,
                 'Message was not received by window 1 from window 1')
 
             self._switch_to_window(1)
             self._post_message('world')
             WebDriverWait(self.driver, 2).until(lambda _:
-                'world' in self._chats_log_value,
+                'world' in self._chat_log_value,
                 'Message was not received by window 2 from window 2')
             self.assertTrue('hello' not in self._chat_log_value,
                 'Message was improperly received by window 2 from window 1')
@@ -91,4 +91,4 @@ class ChatTests(ChannelsLiveServerTestCase):
 
     @property
     def _chat_log_value(self):
-        return self.driver.find_element_by_css_selector('#chats-log').get_property('value')
+        return self.driver.find_element_by_css_selector('#chat-log').get_property('value')
