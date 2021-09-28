@@ -63,11 +63,14 @@
 <!--posted post-->
 
 {% for post in posts %}
-<div class="posted">
-  <li class="nav-pro"><p class="post-txt" name="post_id">{{ post }}</p>
-  </li>
-  <a type="button" class="btn btn-danger delete" href="{% url 'user:delete_post' post_id=post %}">Delete</a>
-</div>
+<div class="news"><div class="user-div"><h5><img class="img-post" src="/media/{{ post.user.profile_image }}">{{ post.user }}</h5></div><div class="posted">
+  <p class="post-txt" name="post_id">{{ post.posts }}</p>
+  </div><div class="date-pub">
+  <p class="date">{{ post.publish }}</p>
+  <a type="button" class="btn btn-danger delete" href="{% url 'user:delete_post' post_id=post.posts %}">Delete</a>
+  </div>
+  </div>
+  <hr>
 {% endfor %}
 
     {% endblock %}

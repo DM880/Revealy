@@ -207,7 +207,7 @@ def main_profile(request, username):
     posts = []
 
     for query in queryset:
-        posts.append(query.posts)
+        posts.append(query)
 
     if request.method == 'POST':
 
