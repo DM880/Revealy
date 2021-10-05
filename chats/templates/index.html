@@ -20,8 +20,11 @@
 
         document.querySelector('#room-name-submit').onclick = function(e) {
             var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chat/' + roomName + '/';
+            window.location.pathname = '/chats/' + roomName + '/';
         };
+
+        // var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        // var chatsock = new ReconnectingWebSocket(ws_scheme + '://' + window.location.host + window.location.pathname);
     </script>
 </body>
 </html>

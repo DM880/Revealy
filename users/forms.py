@@ -16,9 +16,6 @@ class UploadCoverForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UploadCoverForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        # self.helper.layout = Layout(
-        #     'cover_image'
-        # )
 
 
 class UploadProfileImgForm(forms.ModelForm):
