@@ -12,23 +12,23 @@
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-        // const chatSocket = new WebSocket(
-        //     'wss://'
-        //     + window.location.host
-        //     + '/wss/chat/'
-        //     + roomName
-        //     + '/'
-        // );
-
         var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-        var chatsock = new WebSocket(ws_scheme + '://' + window.location.host +  window.location.pathname);
 
-        chatsock.onmessage = function(e) {
+        const chatSocket = new WebSocket(
+            ws_scheme
+            + '://'
+            + window.location.host
+            + '/chats/chat/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             document.querySelector('#chat-log').value += (data.message + '\n');
         };
 
-        chatsock.onclose = function(e) {
+        chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
         };
 
@@ -42,7 +42,7 @@
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
-            chatsock.send(JSON.stringify({
+            chatSocket.send(JSON.stringify({
                 'message': message
             }));
             messageInputDom.value = '';

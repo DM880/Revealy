@@ -22,10 +22,10 @@ def base_chats(request):
 
     return render(request, "chats_base.html", {'all_chats':all_chats})
 
-@login_required
-def specific_room(request, room):
+# @login_required
+# def specific_room(request, room):
 
-    return render(request, "specific_room.html", {'room':room})
+#     return render(request, "specific_room.html", {'room':room})
 
 @login_required
 def sub_or_unsub(request, room):
@@ -56,6 +56,7 @@ def sub_or_unsub(request, room):
 
 def index(request):
     return render(request, 'index.html')
+
 
 def room_chat(request, room_name):
     return render(request, 'room.html', {'room_name': room_name})

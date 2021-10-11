@@ -34,7 +34,7 @@
     <form action="{% url 'chat:sub_or_unsub' room=chat.room_name %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
     <li class="li-p">
-      <a type="button" class="c-groups" href="{% url 'chat:specific_room' room=chat.room_name %}">{{ chat.room_name }}</a>
+      <a type="button" class="c-groups" >{{ chat.room_name }}</a>
       <button class="c-groups-data" href=""><span class="dot"></span> <p>{{ chat.subscribers.count }} {% if chat.subscribers.count > 1 %}Subs{% else %}Sub{% endif %}</p></button>
       <button class="btn add" type="submit" name="subs" {% if request.user in chat.subscribers.all %} title="Unsubscribe" {% else %} title="Subscribe" {% endif %}>{% if request.user in chat.subscribers.all %} × {% else %} + {% endif %}</button>
     </li>
