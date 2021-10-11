@@ -25,6 +25,11 @@ from chats.models import *
 from chats.templates import *
 from chats.views import *
 from chats.urls import *
+import os
+import sendgrid
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import *
+from django.conf import settings
 
 
 # Create your views here.
@@ -100,11 +105,20 @@ def password_reset(request):
 					'protocol': 'http',
 					}
 					email = render_to_string(email_template_name, c)
-					try:
-						send_mail(subject, email, 'Revealy Customers Support' , [user.email], fail_silently=False)
-					except BadHeaderError:
+					message= Mail(
+					    from_email=settings.EMAIL_HOST,
+					    to_emails=user.email,
+					    subject=subject,
+					    html_content=email
+					    )
 
-						return HttpResponse('Invalid header found.')
+					try:
+					    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+					    response = sg.send(message)
+					    print(response)
+					except Exception as e:
+					    print(e)
+
 
 					messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
 					return redirect ("user:Login_page")
