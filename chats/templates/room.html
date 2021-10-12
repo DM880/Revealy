@@ -2,11 +2,13 @@
 {% load static %}
     {% block title %}Chat Room{% endblock %}
 {% block content %}
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+<br>
+    <div class="mess-log" cols="100" rows="20"><p id="chat-log"></p></div><br>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
 
     {{ room_name|json_script:"room-name" }}
+    {{ request.user.username|json_script:"username" }}
 
     <script src="{% static 'js/room.js' %}"></script>
 {% endblock %}

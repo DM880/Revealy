@@ -257,3 +257,19 @@ p{
   transition: all .6s ease;
   -webkit-transition: all .6s ease;
 }
+
+
+/*Room chat*/
+.mess-log{
+  margin-top: 200px;
+  padding: 10px;
+  height:400px;
+  width:400px;
+  background-color: white;
+}
+p{
+  font-size: 20px;
+}
+
+
+
