@@ -152,12 +152,6 @@ img{
   color: #171717;
   font-weight: bold;
 }
-/*.sticky {*/
-/*  position: fixed;*/
-/*  top: -50px;*/
-/*  width: 100%;*/
-/*  z-index:999;*/
-/*}*/
 
 /* Posts */
 
@@ -245,7 +239,6 @@ h5{
   text-align: right;
   font-family:'Roboto', sans-serif;
   opacity: 50%;
-
 }
 
 

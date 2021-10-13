@@ -109,7 +109,7 @@ body {
 }
 
 .header .menu-btn:checked ~ .menu-icon .navicon {
-  background: white;
+  background: transparent;
 }
 
 .header .menu-btn:checked ~ .menu-icon .navicon:before {
@@ -261,15 +261,36 @@ p{
 
 /*Room chat*/
 .mess-log{
-  margin-top: 200px;
+  margin-top: 20px;
   padding: 10px;
-  height:400px;
-  width:400px;
+  height:auto;
+  width:500px;
   background-color: white;
 }
-p{
+
+#chat-log{
   font-size: 20px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+#chat-log:first-child{
+  margin-top:100px;
+}
+
+#chat-message-input{
+  margin-top: 10%;
+  width: 500px;
+  inline-size: 150px;
+  height: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  margin-bottom: 20px;
 }
 
 
-
+.sub-to-chat{
+  padding: 10%;
+  color: white;
+}

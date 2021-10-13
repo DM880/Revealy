@@ -1,14 +1,26 @@
 {% extends 'chats_base.html' %}
 {% load static %}
-    {% block title %}Chat Room{% endblock %}
+    {% block title %}{{ room_name }} Chat{% endblock %}
 {% block content %}
 <br>
-    <div class="mess-log" cols="100" rows="20"><p id="chat-log"></p></div><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
+<div id="chat-log"></div><br>
+
+    {% if state == 1 %}
+    <textarea id="chat-message-input" type="text"></textarea><br>
+    <button id="chat-message-submit" class="btn btn-success" type="button" value="Send">Send</button>
+
+    {% else %}
+
+    <h5 class="sub-to-chat">Sub to chat</h5>
+
+    {% endif %}
 
     {{ room_name|json_script:"room-name" }}
     {{ request.user.username|json_script:"username" }}
+
+    <script type=text/javascript>
+    var url_chat = "{% url 'chat:base_chats' %}"
+    </script>
 
     <script src="{% static 'js/room.js' %}"></script>
 {% endblock %}

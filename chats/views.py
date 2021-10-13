@@ -54,7 +54,13 @@ def sub_or_unsub(request, room):
 def room_chat(request, room_name):
 
     room = room_name.replace(" ", "")
+    chats = Room.objects.all()
+    state = 0
 
-    return render(request, 'room.html', {'room_name': room})
+    for chat in chats:
+        if request.user in chat.subscribers.all() and chat.room_name == room_name:
+            state = 1
+
+    return render(request, 'room.html', {'room_name': room, 'state': state})
 
 

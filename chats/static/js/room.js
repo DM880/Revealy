@@ -11,10 +11,12 @@ const roomName = JSON.parse(document.getElementById('room-name').textContent);
             + '/'
         );
 
+
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').innerText += (data.message + '\n');
+            document.querySelector('#chat-log').innerHTML += '<div class="mess-log" id="chat-log">' + (data.message + '\n') + '</div>';
         };
+
 
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
@@ -37,3 +39,11 @@ const roomName = JSON.parse(document.getElementById('room-name').textContent);
             }));
             messageInputDom.value = '';
         };
+
+
+document.body.style.background = 'none';
+document.body.style.backgroundColor = "white";
+document.querySelector('.header').style.backgroundColor = "black";
+// document.querySelector('#home').innerText = "Chats";
+var url_href_header = document.getElementById('home');
+url_href_header.setAttribute("href", url_chat);
