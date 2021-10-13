@@ -42,8 +42,9 @@ const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
 
 document.body.style.background = 'none';
-document.body.style.backgroundColor = "white";
-document.querySelector('.header').style.backgroundColor = "black";
+document.body.style.backgroundColor = "#2B2B2B";
+document.querySelector('.header').style.backgroundColor = "white";
 // document.querySelector('#home').innerText = "Chats";
 var url_href_header = document.getElementById('home');
 url_href_header.setAttribute("href", url_chat);
+$('#chat-message-input').css('overflow', 'hidden').autogrow()

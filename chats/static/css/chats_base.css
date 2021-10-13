@@ -261,18 +261,28 @@ p{
 
 /*Room chat*/
 .mess-log{
-  margin-top: 20px;
   padding: 10px;
   height:auto;
-  width:500px;
-  background-color: white;
+  width: auto;
+  max-width: 300px;
+  border:solid 2px #006AFF;
+  border-radius: 50px;
+  color: white;
+  background-color: #006AFF;
+  margin-bottom: 20px;
+  font-size: 20px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
+
+
 
 #chat-log{
   font-size: 20px;
   word-wrap: break-word;
   word-break: break-all;
 }
+
 
 #chat-log:first-child{
   margin-top:100px;
@@ -281,7 +291,6 @@ p{
 #chat-message-input{
   margin-top: 10%;
   width: 500px;
-  inline-size: 150px;
   height: auto;
   word-wrap: break-word;
   word-break: break-all;
