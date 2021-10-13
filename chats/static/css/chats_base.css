@@ -300,6 +300,10 @@ p{
 
 
 .sub-to-chat{
-  padding: 10%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 40vh;
+  font-size: 50px;
+  font-family:'Roboto',sans-serif;
   color: white;
 }
