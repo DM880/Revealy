@@ -61,6 +61,8 @@ def room_chat(request, room_name):
         if request.user in chat.subscribers.all() and chat.room_name == room_name:
             state = 1
 
-    return render(request, 'room.html', {'room_name': room, 'state': state})
+    latest_messages =  SubMessage.objects.all().order_by("-timestamp")
+
+    return render(request, 'room.html', {'room_name': room, 'state': state, 'current_room':room_name, 'last_ten_messages':latest_messages})
 
 

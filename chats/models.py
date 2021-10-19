@@ -18,11 +18,11 @@ class Room(models.Model):
     def __str__(self):
         return self.room_name
 
-    # def __str__(self):
-    #     return "{room_chat}/{room_name}".format(room_chat=self.specific_room_chat,room_name=self.room_name)
-
 class SubMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     message = models.CharField(max_length=500)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "{user}/{room}".format(user=self.user,room=self.room)

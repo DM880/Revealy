@@ -3,11 +3,21 @@
     {% block title %}{{ room_name }} Chat{% endblock %}
 {% block content %}
 <br>
-<div id="chat-log"></div><br>
 
     {% if state == 1 %}
+
     <textarea id="chat-message-input" type="text"></textarea><br>
-    <button id="chat-message-submit" class="btn btn-success" type="button" value="Send">Send</button>
+    <button id="chat-message-submit" class="btn btn-success btn-mess-sub" type="button" value="Send">Send</button>
+
+    <div class="mess-log-div">
+    {% for mess in last_ten_messages.all %}
+
+    <div class="mess-log"><h5>{{ mess.user }}: {{ mess.message }}</h5></div>
+
+    {% endfor %}
+    </div>
+
+    <div id="chat-log"></div><br>
 
     {% else %}
 
@@ -16,8 +26,12 @@
 
     {% endif %}
 
+    {{ current_room|json_script:"current_room" }}
     {{ room_name|json_script:"room-name" }}
     {{ request.user.username|json_script:"username" }}
+
+
+    <div id="out" style="overflow:auto"></div>
 
     <script type=text/javascript>
     var url_chat = "{% url 'chat:base_chats' %}"

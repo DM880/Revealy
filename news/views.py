@@ -11,5 +11,4 @@ def news_feed(request):
 
     posts = UserPost.objects.all().order_by('-publish')
 
-
     return render(request, "news_feed.html", {'posts': posts})

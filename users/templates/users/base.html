@@ -19,7 +19,7 @@
           <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
           <ul class="menu">
             <li><a class="men-a" href="{% url 'chat:base_chats' %}">Chat</a></li>
-            <li><a class="men-a" href="{% url 'news:news_feed' %}">News</a></li>
+            <li><a class="men-a" href="{% url 'news:news_feed' %}">Feed</a></li>
             <li><a class="men-a" href="{% url 'user:Logout' %}">Logout</a></li>
           </ul>
             </div>
@@ -42,7 +42,7 @@
 <!--Nav-->
 <nav class="nav" id="navbar"><ul class="ul-pro">
 <li class="nav-pro"><a href="{% url 'user:Profile' username=user.username %}">POSTS</a></li>
-<li class="nav-pro"><a href="{% url 'user:reveals' username=user.username %}">REVEALS</a></li>
+<li class="nav-pro"><a href="{% url 'user:reveals' username=user.username %}">USERS</a></li>
 <li class="nav-pro"><a href="{% url 'user:info_profile' username=user.username %}">INFO<a/></li>
 <li class="nav-pro"><a href="{% url 'user:delete_user' username=user.username %}">DELETE<a/></li>
 </ul></nav>

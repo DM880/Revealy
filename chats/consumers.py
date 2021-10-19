@@ -1,9 +1,15 @@
 # chat/consumers.py
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
+from .models import SubMessage, Room
+from channels.db import database_sync_to_async
+from django.core import serializers
+# from types import SimpleNamespace
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
+
+
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chats_%s' % self.room_name
@@ -26,11 +32,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         username = self.scope["user"].username
-        text_data_json = json.loads(text_data)
+        text_data_json = json.loads(text_data) # ,object_hook=lambda d: SimpleNamespace(**d)
         message = text_data_json['message']
         message_user = (username + ': ' + message)
 
-        # Send message to room group
+        await self.create_mess_instance(text_data)
+
         await self.channel_layer.group_send(
             self.room_group_name,
             {
@@ -38,6 +45,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'message': message_user
             }
         )
+
 
     # Receive message from room group
     async def chat_message(self, event):
@@ -49,3 +57,21 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'message': message,
             "username": username
         }))
+
+    @database_sync_to_async
+    def create_mess_instance(self, text_data):
+        text_data_json = json.loads(text_data) # ,object_hook=lambda d: SimpleNamespace(**d)
+        message = text_data_json['message']
+
+        #couldn't get current_room for create SubMessage model's instance
+        room = Room.objects.get(room_name = text_data_json['current_room'])
+
+        json_model_data = {
+            'user':self.scope['user'],
+            'room': room,
+            'message': message,
+        }
+
+        mess_instance = SubMessage.objects.create(**json_model_data)
+
+        return mess_instance
